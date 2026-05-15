@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom Utilities and Animations */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    cursor: default;
+  }
+}
+
+/* Reveal Text Animation */
+.reveal-text {
+  animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-text-delay {
+  animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.3s forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes reveal {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Scroll Reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Border Animation */
+.border-animate {
+    position: relative;
+    overflow: hidden;
+}
+
+.border-animate::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0% 80%, white 100%);
+    animation: rotate 6s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Mobile Nav link delay */
+#mobile-nav .mobile-link {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+
+#mobile-nav.open .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#mobile-nav.open .mobile-link:nth-child(1) { transition-delay: 0.1s; }
+#mobile-nav.open .mobile-link:nth-child(2) { transition-delay: 0.2s; }
+#mobile-nav.open .mobile-link:nth-child(3) { transition-delay: 0.3s; }
+#mobile-nav.open .mobile-link:nth-child(4) { transition-delay: 0.4s; }
+
+/* Custom Scrollbar for minimalist feel (WebKit) */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
